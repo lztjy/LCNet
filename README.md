@@ -56,6 +56,8 @@
 
 # Preparation
 You need to download the Cityscapes and CamVid datasets and place the symbolic links or datasets of the Cityscapes and CamVid datasets in the dataset directory. Our file directory is consistent with DABNet (https://github.com/Reagan1311/DABNet).
+
+The Cityscapes dataset and the CamVid dataset are used to train the model, the resolution of the Cityscapes dataset is 1024x2048, and the resolution of the CamVid dataset is 720x960. The model will be trained at the input size and validated at the original resolution.
 ```
 dataset
   ├── camvid
@@ -85,7 +87,7 @@ dataset
 > python train.py 
 
 ### 1.2 CamVid
-> python python train.py --dataset camvid --train_type trainval --max_epochs 1000 --lr 1e-3 --batch_size 8
+> python python train.py --dataset camvid --train_type trainval --max_epochs 1000 --lr 1e-3  --input_size 360,480
 
 ## 2 Testing
 ### 2.1 Cityscapes  
