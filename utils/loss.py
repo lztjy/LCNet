@@ -41,17 +41,19 @@ class FocalLoss2d(nn.Module):
 
 class ProbOhemCrossEntropy2d(nn.Module):
     def __init__(self, ignore_label, reduction='mean', thresh=0.6, min_kept=256,
-                 down_ratio=1, use_weight=False):
+                 down_ratio=1, use_weight=False,weight = None):
         super(ProbOhemCrossEntropy2d, self).__init__()
         self.ignore_label = ignore_label
         self.thresh = float(thresh)
         self.min_kept = int(min_kept)
         self.down_ratio = down_ratio
         if use_weight:
-            weight = torch.FloatTensor(
+            if(weight==None):
+              weight = torch.FloatTensor(
                 [0.8373, 0.918, 0.866, 1.0345, 1.0166, 0.9969, 0.9754, 1.0489,
                  0.8786, 1.0023, 0.9539, 0.9843, 1.1116, 0.9037, 1.0865, 1.0955,
                  1.0865, 1.1529, 1.0507])
+            
             self.criterion = torch.nn.CrossEntropyLoss(reduction=reduction,
                                                        weight=weight,
                                                        ignore_index=ignore_label)
@@ -91,3 +93,4 @@ class ProbOhemCrossEntropy2d(nn.Module):
         target = target.view(b, h, w)
 
         return self.criterion(pred, target)
+
