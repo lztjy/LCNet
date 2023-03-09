@@ -4,7 +4,7 @@ import torch
 import torch.nn as nn
 import timeit
 import numpy as np
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from torch.autograd import Variable
 import torch.backends.cudnn as cudnn
 from argparse import ArgumentParser
@@ -16,12 +16,10 @@ from utils.metric import get_iou
 from utils.loss import CrossEntropyLoss2d, ProbOhemCrossEntropy2d
 from utils.lr_scheduler import WarmupPolyLR
 from utils.convert_state import convert_state_dict
-import matplotlib
-matplotlib.use('Agg')
-
-
 
 GLOBAL_SEED = 1234
+
+torch.backends.cudnn.benchmark = True
 
 
 def val(args, val_loader, model):
@@ -83,15 +81,17 @@ def train(args, train_loader, model, criterion, optimizer, epoch):
         labels = Variable(labels.long()).cuda()
         output = model(images)
         loss = criterion(output, labels)
-      #  scheduler.step()
+
         optimizer.zero_grad()  # set the grad to zero
+
         loss.backward()
+
         optimizer.step()
         scheduler.step()
         epoch_loss.append(loss.item())
         time_taken = time.time() - start_time
-
-        print('=====> epoch[%d/%d] iter: (%d/%d) \tcur_lr: %.6f loss: %.3f time:%.2f' % (epoch + 1, args.max_epochs,
+        if((iteration + 1)%100==0):
+            print('=====> epoch[%d/%d] iter: (%d/%d) \tcur_lr: %.6f loss: %.3f time:%.2f' % (epoch + 1, args.max_epochs,
                                                                                          iteration + 1, total_batches,
                                                                                          lr, loss.item(), time_taken))
 
@@ -138,7 +138,7 @@ def train_model(args):
 
     print("=====> computing network parameters and FLOPs")
     total_paramters = netParams(model)
-    print("the number of parameters: %d ==> %.8f M" % (total_paramters, (total_paramters / 1e6)))
+    print("the number of parameters: %d ==> %.2f M" % (total_paramters, (total_paramters / 1e6)))
 
     # load data and data augmentation
     datas, trainLoader, valLoader = build_dataset_train(args.dataset, input_size, args.batch_size, args.train_type,
@@ -150,13 +150,21 @@ def train_model(args):
 
     # define loss function, respectively
     weight = torch.from_numpy(datas['classWeights'])
+    print(weight)
 
     if args.dataset == 'camvid':
-        criteria = CrossEntropyLoss2d(weight=weight, ignore_label=ignore_label)
+        #criteria = CrossEntropyLoss2d(weight=weight, ignore_label=ignore_label)
+        min_kept = int(args.batch_size // len(args.gpus) * h * w // 16)
+        criteria = ProbOhemCrossEntropy2d(use_weight=True, ignore_label=ignore_label,
+                                          thresh=0.7, min_kept=min_kept,weight=weight)
     elif args.dataset == 'cityscapes':
         min_kept = int(args.batch_size // len(args.gpus) * h * w // 16)
         criteria = ProbOhemCrossEntropy2d(use_weight=True, ignore_label=ignore_label,
                                           thresh=0.7, min_kept=min_kept)
+        #criteria = CrossEntropyLoss2d(weight=weight, ignore_label=ignore_label)
+        # criteria = LovaszSoftmax()
+
+
     else:
         raise NotImplementedError(
             "This repository now supports two datasets: cityscapes and camvid, %s is not included" % args.dataset)
@@ -172,7 +180,7 @@ def train_model(args):
             print("single GPU for training")
             model = model.cuda()  # 1-card data parallel
 
-    args.savedir = (args.savedir + args.dataset + '/' + args.model + 'bs'
+    args.savedir = (args.savedir + args.dataset + '/' + args.filename + args.model + 'bs'
                     + str(args.batch_size) + 'gpu' + str(args.gpu_nums) + "_" + str(args.train_type) + '/')
 
     if not os.path.exists(args.savedir):
@@ -205,8 +213,10 @@ def train_model(args):
 
     # define optimization criteria
     if args.dataset == 'camvid':
-        optimizer = torch.optim.Adam(
-            filter(lambda p: p.requires_grad, model.parameters()), args.lr, (0.9, 0.999), eps=1e-08, weight_decay=2e-4)
+     #   optimizer = torch.optim.Adam(
+     #       filter(lambda p: p.requires_grad, model.parameters()), args.lr, (0.9, 0.999), eps=1e-08, weight_decay=2e-4)
+        optimizer = torch.optim.SGD(
+            filter(lambda p: p.requires_grad, model.parameters()), args.lr, momentum=0.9, weight_decay=5e-4)
 
     elif args.dataset == 'cityscapes':
         optimizer = torch.optim.SGD(
@@ -251,30 +261,30 @@ def train_model(args):
             torch.save(state, model_file_name)
 
         # draw plots for visualization
-        if epoch % 50 == 0 or epoch == (args.max_epochs - 1):
+        #if epoch % 50 == 0 or epoch == (args.max_epochs - 1):
             # Plot the figures per 50 epochs
-            fig1, ax1 = plt.subplots(figsize=(11, 8))
+        #    fig1, ax1 = plt.subplots(figsize=(11, 8))
 
-            ax1.plot(range(start_epoch, epoch + 1), lossTr_list)
-            ax1.set_title("Average training loss vs epochs")
-            ax1.set_xlabel("Epochs")
-            ax1.set_ylabel("Current loss")
+        #    ax1.plot(range(start_epoch, epoch + 1), lossTr_list)
+        #    ax1.set_title("Average training loss vs epochs")
+        #    ax1.set_xlabel("Epochs")
+        #    ax1.set_ylabel("Current loss")
 
-            plt.savefig(args.savedir + "loss_vs_epochs.png")
+        #    plt.savefig(args.savedir + "loss_vs_epochs.png")
 
-            plt.clf()
+        #    plt.clf()
 
-            fig2, ax2 = plt.subplots(figsize=(11, 8))
+        #    fig2, ax2 = plt.subplots(figsize=(11, 8))
 
-            ax2.plot(epoches, mIOU_val_list, label="Val IoU")
-            ax2.set_title("Average IoU vs epochs")
-            ax2.set_xlabel("Epochs")
-            ax2.set_ylabel("Current IoU")
-            plt.legend(loc='lower right')
+        #    ax2.plot(epoches, mIOU_val_list, label="Val IoU")
+        #    ax2.set_title("Average IoU vs epochs")
+        #    ax2.set_xlabel("Epochs")
+        #    ax2.set_ylabel("Current IoU")
+        #    plt.legend(loc='lower right')
 
-            plt.savefig(args.savedir + "iou_vs_epochs.png")
+        #    plt.savefig(args.savedir + "iou_vs_epochs.png")
 
-            plt.close('all')
+        #    plt.close('all')
 
     logger.close()
 
@@ -282,20 +292,21 @@ def train_model(args):
 if __name__ == '__main__':
     start = timeit.default_timer()
     parser = ArgumentParser()
-    parser.add_argument('--model', default="LMFFNet", help="model name: Context Guided Network (CGNet)")
+    parser.add_argument('--filename', default="0", help="model name: Context Guided Network (CGNet)")
+    parser.add_argument('--model', default="LCNet", help="model name: Context Guided Network (CGNet)")
     parser.add_argument('--dataset', default="cityscapes", help="dataset: cityscapes or camvid")
-    parser.add_argument('--train_type', type=str, default="trainval",
+    parser.add_argument('--train_type', type=str, default="train",
                         help="ontrain for training on train set, ontrainval for training on train+val set")
-    parser.add_argument('--max_epochs', type=int, default=1,
+    parser.add_argument('--max_epochs', type=int, default=1000,
                         help="the number of epochs: 300 for train set, 350 for train+val set")
     parser.add_argument('--input_size', type=str, default="512,1024", help="input size of model")
     parser.add_argument('--random_mirror', type=bool, default=True, help="input image random mirror")
     parser.add_argument('--random_scale', type=bool, default=True, help="input image resize 0.5 to 2")
-    parser.add_argument('--num_workers', type=int, default=4, help=" the number of parallel threads")
+    parser.add_argument('--num_workers', type=int, default=8, help=" the number of parallel threads")
     parser.add_argument('--lr', type=float, default=4.5e-2, help="initial learning rate")
     parser.add_argument('--batch_size', type=int, default=8, help="the batch size is set to 16 for 2 GPUs")
-    parser.add_argument('--savedir', default="./checkpoint/", help="directory to save the model snapshot")
-    parser.add_argument('--resume', type=str, default="",
+    parser.add_argument('--savedir', default="./checkpoint/", help="directory to save the model snapshot checkpointNEWLACFFval")
+    parser.add_argument('--resume', type=str, default="h",
                         help="use this file to load last checkpoint for continuing training")
     parser.add_argument('--classes', type=int, default=19,
                         help="the number of classes in the dataset. 19 and 11 for cityscapes and camvid, respectively")
@@ -306,12 +317,9 @@ if __name__ == '__main__':
 
     if args.dataset == 'cityscapes':
         args.classes = 19
-        args.input_size = '512,1024'
-      #  args.input_size = '1024,1024'
         ignore_label = 255
     elif args.dataset == 'camvid':
         args.classes = 11
-        args.input_size = '360,480'
         ignore_label = 11
     else:
         raise NotImplementedError(
