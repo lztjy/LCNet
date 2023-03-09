@@ -52,8 +52,7 @@
 </tbody>
 </table>
 
-\* Represents the resolution of the input image cropping in the training phase. We found that when the randomly cropped image is 1024x1024 in the training phase, the network can perform better. If the input image of LMFFNet is randomly cropped to 1024x1024 resolution, 76.1% mIoU can be achieved on cityscapes.
-
+\* Represents the resolution of the input image cropping in the training phase.
 
 # Preparation
 You need to download the Cityscapes and CamVid datasets and place the symbolic links or datasets of the Cityscapes and CamVid datasets in the dataset directory. Our file directory is consistent with DABNet (https://github.com/Reagan1311/DABNet).
