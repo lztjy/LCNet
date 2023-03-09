@@ -1,5 +1,5 @@
 
-# Segmentation performance of LMFFNet
+# Segmentation performance of LCNet
 <table class="tg">
 <thead>
   <tr>
