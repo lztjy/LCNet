@@ -185,8 +185,6 @@ class DAD(nn.Module):
         output = self.conv1x1(output)
         return output
 
-
-        return output
 """print layers and params of network"""
 if __name__ == '__main__':
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
