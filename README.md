@@ -17,7 +17,7 @@
     <td class="tg-baqh">512,1024</td>
     <td class="tg-baqh">Cityscapes</td>
     <td class="tg-baqh">No</td>
-    <td class="tg-baqh">train</td>
+    <td class="tg-baqh">trainval</td>
     <td class="tg-baqh">73.3</td>
     <td class="tg-baqh">0.51</td>
     <td class="tg-baqh">185</td>
@@ -35,7 +35,7 @@
     <td class="tg-c3ow">512,1024</td>
     <td class="tg-c3ow">Cityscapes</td>
     <td class="tg-c3ow">No</td>
-    <td class="tg-c3ow">train</td>
+    <td class="tg-c3ow">trainval</td>
     <td class="tg-c3ow">74.3</td>
     <td class="tg-baqh">0.74</td>
     <td class="tg-baqh">136</td>
