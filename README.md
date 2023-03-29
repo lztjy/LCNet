@@ -47,7 +47,7 @@
     <td class="tg-c3ow">train</td>
     <td class="tg-c3ow">75.6</td>
     <td class="tg-baqh">0.74</td>
-    <td class="tg-baqh">136.8</td>
+    <td class="tg-baqh">136</td>
   </tr>
   <tr>
     <td class="tg-c3ow">1024,1024</td>
@@ -98,8 +98,9 @@ dataset
 > python python train.py --dataset camvid --train_type trainval --max_epochs 1000 --lr 1e-3  --input_size 360,480
 
 ## 2 Testing
-### 2.1 Cityscapes  
 > python predict.py --dataset ${camvid, cityscapes} --checkpoint ${CHECKPOINT_FILE}
+### 2.1 Cityscapes  
+> python predict.py --dataset cityscapes --checkpoint "./checkpoints/LCNet_3_11_1024_train.pth"
 
 To convert the training lables to class lables.
 > python trainID2labelID.py
