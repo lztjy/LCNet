@@ -95,7 +95,7 @@ dataset
 > python train.py 
 
 ### 1.2 CamVid
-> python python train.py --dataset camvid --train_type trainval --max_epochs 1000 --lr 1e-3  --input_size 360,480
+> python train.py --dataset camvid --train_type trainval --max_epochs 1000 --lr 1e-3  --input_size 360,480
 
 ## 2 Testing
 > python test.py --dataset ${camvid, cityscapes} --checkpoint ${CHECKPOINT_FILE}
