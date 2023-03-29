@@ -98,9 +98,9 @@ dataset
 > python python train.py --dataset camvid --train_type trainval --max_epochs 1000 --lr 1e-3  --input_size 360,480
 
 ## 2 Testing
-> python predict.py --dataset ${camvid, cityscapes} --checkpoint ${CHECKPOINT_FILE}
+> python test.py --dataset ${camvid, cityscapes} --checkpoint ${CHECKPOINT_FILE}
 ### 2.1 Cityscapes  
-> python predict.py --dataset cityscapes --checkpoint "./checkpoints/LCNet_3_11_1024_train.pth"
+> python test.py --dataset cityscapes --checkpoint "./checkpoints/LCNet_3_11_1024_train.pth"
 
 To convert the training lables to class lables.
 > python trainID2labelID.py
@@ -110,7 +110,7 @@ To convert the training lables to class lables.
 ### 2.2 CamVid
 > python test.py --dataset camvid --checkpoint ${CHECKPOINT_FILE}
 
-## 4. fps
+## 3. fps
 > python eval_forward_time.py --size 512,1024
 
  
