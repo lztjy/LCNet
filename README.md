@@ -3,6 +3,8 @@
 <table class="tg">
 <thead>
   <tr>
+    <th class="tg-amwm">S1</th>
+    <th class="tg-amwm">S2</th>
     <th class="tg-amwm">Crop Size*</th>
     <th class="tg-amwm">Dataset</th>
     <th class="tg-amwm">Pretrained</th>
@@ -15,6 +17,8 @@
 </thead>
 <tbody>
   <tr>
+    <td class="tg-baqh">3</td>
+    <td class="tg-baqh">7</td>
     <td class="tg-baqh">512,1024</td>
     <td class="tg-baqh">Cityscapes</td>
     <td class="tg-baqh">No</td>
@@ -25,6 +29,8 @@
     <td class="tg-baqh">-</td>
   </tr>
   <tr>
+    <td class="tg-baqh">3</td>
+    <td class="tg-baqh">7</td>
     <td class="tg-c3ow">1024,1024</td>
     <td class="tg-c3ow">Cityscapes</td>
     <td class="tg-c3ow">No</td>
@@ -35,6 +41,8 @@
     <td class="tg-baqh">-</td>
   </tr>
   <tr>
+    <td class="tg-baqh">3</td>
+    <td class="tg-baqh">11</td>
     <td class="tg-c3ow">512,1024</td>
     <td class="tg-c3ow">Cityscapes</td>
     <td class="tg-c3ow">No</td>
@@ -45,6 +53,8 @@
     <td class="tg-baqh">-</td>
   </tr>
   <tr>
+    <td class="tg-baqh">3</td>
+    <td class="tg-baqh">11</td>
     <td class="tg-c3ow">1024,1024</td>
     <td class="tg-c3ow">Cityscapes</td>
     <td class="tg-c3ow">No</td>
@@ -55,6 +65,8 @@
     <td class="tg-baqh">./checkpoints/</td>
   </tr>
   <tr>
+    <td class="tg-baqh">3</td>
+    <td class="tg-baqh">11</td>
     <td class="tg-c3ow">1024,1024</td>
     <td class="tg-c3ow">Cityscapes</td>
     <td class="tg-c3ow">No</td>
