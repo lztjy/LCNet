@@ -150,7 +150,7 @@ def test_model(args):
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    parser.add_argument('--model', default="LMFFNet", help="model name ")
+    parser.add_argument('--model', default="LCNet", help="model name ")
     parser.add_argument('--dataset', default="cityscapes", help="dataset: cityscapes or camvid")
     parser.add_argument('--num_workers', type=int, default=1, help="the number of parallel threads")
     parser.add_argument('--batch_size', type=int, default=1,
