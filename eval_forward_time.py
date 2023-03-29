@@ -42,7 +42,7 @@ if __name__ == '__main__':
     parser.add_argument('--batch-size', type=int, default=1)
     parser.add_argument('--classes', type=int, default=19)
     parser.add_argument('--iter', type=int, default=100)
-    parser.add_argument('--model', type=str, default='LMFFNet')
+    parser.add_argument('--model', type=str, default='LCNet')
     parser.add_argument("--gpus", type=str, default="0", help="gpu ids (default: 0)")
     args = parser.parse_args()
 
