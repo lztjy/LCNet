@@ -10,6 +10,7 @@
     <th class="tg-amwm">mIoU</th>
     <th class="tg-amwm">Params</th>
     <th class="tg-amwm">Speed</th>
+    <th class="tg-amwm">Location</th>
   </tr>
 </thead>
 <tbody>
@@ -21,6 +22,7 @@
     <td class="tg-baqh">73.3</td>
     <td class="tg-baqh">0.51</td>
     <td class="tg-baqh">185</td>
+    <td class="tg-baqh">-</td>
   </tr>
   <tr>
     <td class="tg-c3ow">1024,1024</td>
@@ -30,6 +32,7 @@
     <td class="tg-c3ow">73.8</td>
     <td class="tg-baqh">0.51</td>
     <td class="tg-baqh">142</td>
+    <td class="tg-baqh">-</td>
   </tr>
   <tr>
     <td class="tg-c3ow">512,1024</td>
@@ -39,6 +42,7 @@
     <td class="tg-c3ow">74.3</td>
     <td class="tg-baqh">0.74</td>
     <td class="tg-baqh">136</td>
+    <td class="tg-baqh">-</td>
   </tr>
   <tr>
     <td class="tg-c3ow">1024,1024</td>
@@ -48,6 +52,7 @@
     <td class="tg-c3ow">75.6</td>
     <td class="tg-baqh">0.74</td>
     <td class="tg-baqh">117</td>
+    <td class="tg-baqh">./checkpoints/</td>
   </tr>
   <tr>
     <td class="tg-c3ow">1024,1024</td>
@@ -57,6 +62,7 @@
     <td class="tg-c3ow">75.8</td>
     <td class="tg-baqh">0.74</td>
     <td class="tg-baqh">117</td>
+    <td class="tg-baqh">./checkpoints/</td>
   </tr>
 </tbody>
 </table>
