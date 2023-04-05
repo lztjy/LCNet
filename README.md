@@ -1,4 +1,4 @@
-# The code will be available after the publication of the paper
+# The complete codes will be available after the official publication of our paper :"Lightweight Context-Aware Network Using Partial-Channel Transformation for Real-Time Semantic Segmentation"
 
 # Segmentation performance of LCNet
 <table class="tg">
