@@ -1,3 +1,4 @@
+#The code will be available after the publication of the paper
 
 # Segmentation performance of LCNet
 <table class="tg">
@@ -62,7 +63,7 @@
     <td class="tg-c3ow">75.6</td>
     <td class="tg-baqh">0.74</td>
     <td class="tg-baqh">117</td>
-    <td class="tg-baqh">./checkpoints/</td>
+    <td class="tg-baqh">-</td>
   </tr>
   <tr>
     <td class="tg-baqh">3</td>
@@ -74,7 +75,7 @@
     <td class="tg-c3ow">75.8</td>
     <td class="tg-baqh">0.74</td>
     <td class="tg-baqh">117</td>
-    <td class="tg-baqh">./checkpoints/</td>
+    <td class="tg-baqh">-</td>
   </tr>
 </tbody>
 </table>
