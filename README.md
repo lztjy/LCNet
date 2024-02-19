@@ -1,4 +1,5 @@
-# The complete codes will be available after the official publication of our paper :"Lightweight Context-Aware Network Using Partial-Channel Transformation for Real-Time Semantic Segmentation"
+# Lightweight Context-Aware Network Using Partial-Channel Transformation for Real-Time Semantic Segmentation
+https://github.com/lztjy/LCNet
 
 # Segmentation performance of LCNet
 <table class="tg">
@@ -133,10 +134,16 @@ To convert the training lables to class lables.
 > python eval_forward_time.py --size 512,1024
 
  
- To be continue...
- 
  ## Citation
-
+@ARTICLE{10411824,
+  author={Shi, Min and Lin, Shaowen and Yi, Qingming and Weng, Jian and Luo, Aiwen and Zhou, Yicong},
+  journal={IEEE Transactions on Intelligent Transportation Systems}, 
+  title={Lightweight Context-Aware Network Using Partial-Channel Transformation for Real-Time Semantic Segmentation}, 
+  year={2024},
+  volume={},
+  number={},
+  pages={1-16}
+  
  ## Reference
  
  https://github.com/xiaoyufenfei/Efficient-Segmentation-Networks
