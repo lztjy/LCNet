@@ -135,7 +135,8 @@ To convert the training lables to class lables.
 
  
  ## Citation
-@ARTICLE{10411824,
+@ARTICLE{
+  10411824,
   author={Shi, Min and Lin, Shaowen and Yi, Qingming and Weng, Jian and Luo, Aiwen and Zhou, Yicong},
   journal={IEEE Transactions on Intelligent Transportation Systems}, 
   title={Lightweight Context-Aware Network Using Partial-Channel Transformation for Real-Time Semantic Segmentation}, 
@@ -143,6 +144,7 @@ To convert the training lables to class lables.
   volume={},
   number={},
   pages={1-16}
+  }
   
  ## Reference
  
