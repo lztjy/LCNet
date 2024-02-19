@@ -1,6 +1,6 @@
 # Lightweight Context-Aware Network Using Partial-Channel Transformation for Real-Time Semantic Segmentation
 [Lightweight Context-Aware Network Using Partial-Channel Transformation for Real-Time Semantic Segmentation](https://ieeexplore.ieee.org/document/10411824)
-![image](model/DAD.pdf)
+![image](model/cmp.png)
 # Segmentation performance of LCNet
 <table class="tg">
 <thead>
