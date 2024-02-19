@@ -6,6 +6,9 @@
 <div align=center><img src="https://github.com/lztjy/LCNet/blob/master/model/PCT.png"/></div>
 <div align=center><img src="https://github.com/lztjy/LCNet/blob/master/model/TCA.png"/></div>
 <div align=center><img src="https://github.com/lztjy/LCNet/blob/master/model/DAD.png"/></div>
+<div align=center><img src="https://github.com/lztjy/LCNet/blob/master/model/DADvis.png"/></div>
+<div align=center><img src="https://github.com/lztjy/LCNet/blob/master/model/cityscapes.png"/></div>
+
 # Segmentation performance of LCNet
 <table class="tg">
 <thead>
